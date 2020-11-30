@@ -1,0 +1,187 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="container-middle mt-5">
+        <% if (errorMessage) { %>
+        <div class="alert alert-<%= result %> text-center" role="alert" id="alert">
+            <%= errorMessage %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+    </div>
+    <!-- <div class="container text-capitalize add-product">
+        <form action="/admin/<% if (editing) { %>edit-product <% } else { %>add-product<% } %> " method="POST"
+            novalidate enctype="multipart/form-data">
+            <div class="row">
+                <div class="form-row ">
+
+                    <label for="title">Product Name</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Product Name"
+                        value="<% if (editing || hasError) { %><%= product.title %><% } %>"">
+        
+                </div>
+
+                <div class=" form-row ">
+                    <div class=" form-group col-md-4 mt-3">
+                    <label for="brand">Brand</label>
+                    <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand"
+                        value="<% if (editing || hasError) { %><%= product.brand %><% } %>"">
+                    </div>
+                    <div class=" form-group col-md-4 mt-3">
+                    <label for="price">price</label>
+                    <input type="number" class="form-control" id="price" name="price" step="1" placeholder="0.00"
+                        value="<% if (editing || hasError) { %><%= product.price %><% } %>"">
+                    </div>
+                </div>
+                    <div class=" col col-lg-4 col-md-12 mt-3">
+                    <label for="stock">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock" step="1" pattern="[0-9]" min="1"
+                        placeholder="0" value="<% if (editing || hasError) { %><%= product.stock %><% } %>">
+                </div>
+
+                <div class="col col-lg-12 col-md-12 mt-3">
+                    <label for="image">Upload Image</label>
+                    <input type="file" class="form-control-file" id="image" name="image">
+                </div>
+
+                <div class="col col-lg-12 col-md-12 mt-3">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description"
+                        rows="10"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
+                </div>
+
+                <div class="col col-lg-12 col-md-12 mt-3">
+                    <input type="checkbox" name="cashOnDelivery" id="cashOnDelivery" checked>
+                    <label for="cashOnDelivery" class="ml-3">Cash on Delivery available</label>
+                </div>
+
+                <div class="col col-lg-12 col-md-12  mt-3">
+                    <input type="checkbox" name="discount" id="discount" onclick="dispInput(this)"
+                        <% if(product.disPercentage ) { %> checked <% } %>>
+                    <label for="discount" class="ml-3">discount available</label>
+                </div>
+
+                <div class="col col-lg-4 col-md-12 mt-1 ml-4">
+                    <input type="number" class="form-control hidden" id="disPercentage" name="disPercentage" step="1"
+                        pattern="[0-9]" min="1" placeholder="Discount Percentage"
+                        value="<% if (editing || hasError) { %><%= product.disPercentage %><% } %>"">
+                    </div>
+
+                <div class=" col col-lg-12 col-md-12 mt-3">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn btn-dark btn-md float-right"><% if (editing) { %>Update
+                        Product<% } else { %>Add Product<% } %></button>
+                </div>
+            </div>
+        </form>
+    </div> -->
+
+
+    <div class="container text-capitalize">
+        <form action="/admin/<% if (editing) { %>edit-product <% } else { %>add-product<% } %> " method="POST"
+            novalidate enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="form-group col-md-12 mt-3">
+                    <label for="title">Product Name</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Product Name"
+                        value="<% if (editing || hasError) { %><%= product.title %><% } %>"">
+                </div>
+            </div>
+            <div class=" form-row mt-3">
+                    <div class="form-group col-md-4 mt-3">
+                        <label for="brand">Brand</label>
+                        <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand"
+                            value="<% if (editing || hasError) { %><%= product.brand %><% } %>"">
+                </div>
+
+
+                <div class=" form-group col-md-4 mt-3">
+                        <label for="price">price</label>
+                        <input type="number" class="form-control" id="price" name="price" step="1" placeholder="0.00"
+                            value="<% if (editing || hasError) { %><%= product.price %><% } %>"">
+                </div>
+
+                <div class=" form-group col-md-4 mt-3">
+                        <label for="stock">Stock</label>
+                        <input type="number" class="form-control" id="stock" name="stock" step="1" pattern="[0-9]"
+                            min="1" placeholder="0" value="<% if (editing || hasError) { %><%= product.stock %><% } %>">
+                </div>
+            </div>
+
+
+            <div class="form-row mt-3">
+                <label for="image">Upload Image</label>
+                <input type="file" class="form-control-file" id="image" name="image">
+            </div>
+
+            <div class="form-row mt-3">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description"
+                    rows="10"><% if (editing || hasError) { %><%= product.description %><% } %></textarea>
+            </div>
+
+            <div class="form-row mt-3">
+                <div class="form-check">
+                    <input type="checkbox" name="cashOnDelivery" id="cashOnDelivery" checked>
+                    <label for="cashOnDelivery" class="ml-3">Cash on Delivery available</label>
+                </div>
+            </div>
+
+            <div class="form-row mt-3">
+                <div class="form-check">
+                    <input type="checkbox" name="discount" id="discount" onclick="dispInput(this)"
+                        <% if(product.disPercentage ) { %> checked <% } %>>
+                    <label for="discount" class="ml-3">discount available</label>
+                </div>
+            </div>
+
+            <div class="form-row mt-3">
+                <div class="form-group col-md-4 ml-3">
+                    <input type="number" class="form-control hidden" id="disPercentage" name="disPercentage"
+                        step="1" pattern="[0-9]" min="1" placeholder="Discount Percentage"
+                        value="<% if (editing || hasError) { %><%= product.disPercentage %><% } %>"">
+                </div>
+            </div>
+
+            <div class=" form-row">
+                <div class="form-group col-md-12 mt-3 mr-3">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn btn-dark btn-md float-right"><% if (editing) { %>Update
+                        Product<% } else { %>Add Product<% } %></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <script>
+        function hideAlert() {
+            const alert = document.getElementById('alert');
+            alert.classList.add("hidden");
+        };
+        try {
+            const alert = document.getElementById('alert');
+            if (alert.classList[0] === null) {} else {
+                setTimeout("hideAlert()", 3000);
+            }
+        } catch (err) {
+            alert == null
+        }
+
+
+        function dispInput(checkbox) {
+            const discountBox = document.getElementById('disPercentage');
+            if (checkbox.checked) {
+                discountBox.classList.remove('hidden')
+            } else {
+                discountBox.classList.add('hidden')
+            }
+        }
+    </script>
+
+    <%- include('../includes/end.ejs') %>

@@ -1,0 +1,114 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="container-middle mt-5">
+        <% if (errorMessage) { %>
+        <div class="alert alert-<%= result %> text-center" role="alert" id="alert">
+            <%= errorMessage %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+    </div>
+    <!-- <div class="container text-capatilize signup">
+            <form action="/signup" method="POST" novalidate>
+                <div class="row">
+                    <div class="col col-lg-6 col-md-12 col-sm-12 mt-3">
+                        <label for="firstname">First Name*</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"
+                            value="<%= oldInput.firstname %>">
+                    </div>
+                    <div class="col col-lg-6 col-md-12 col-sm-12 mt-3">
+                        <label for="lastname">Last Name*</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name"
+                            value="<%= oldInput.lastname %>">
+                    </div>
+                    <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                        <label for="email">Email Address*</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Your Email"
+                            value="<%= oldInput.email %>">
+                    </div>
+                    <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                        <label for="password">Password*</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                            value="<%= oldInput.password %>">
+                    </div>
+                    <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                        <label for="confirmPassword">Confirm Password*</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm Password">
+                    </div>
+                    <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="btn btn-dark btn-md float-right">Sign Up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+
+    <div class="container text-capitalize">
+        <form action="/signup" method="POST" novalidate>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstname">First Name*</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name"
+                        value="<%= oldInput.firstname %>">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastname">Last Name*</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name"
+                        value="<%= oldInput.lastname %>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address*</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Your Email"
+                    value="<%= oldInput.email %>">
+            </div>
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    value="<%= oldInput.password %>">
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password*</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                    placeholder="Confirm Password">
+            </div>
+
+            <div class=" form-row">
+                <div class="form-group col-md-12 mt-3 mr-3">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn btn-dark btn-md float-right">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+    <script>
+        function hideAlert() {
+            const alert = document.getElementById('alert');
+            alert.classList.add("hidden");
+        };
+        try {
+            const alert = document.getElementById('alert');
+            if (alert.classList[0] === null) {} else {
+                setTimeout("hideAlert()", 3000);
+            }
+        } catch (err) {
+            alert == null
+        }
+    </script>
+
+    <%- include('../includes/end.ejs') %>

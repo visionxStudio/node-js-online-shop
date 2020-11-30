@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="container-middle mt-5">
+        <% if (errorMessage) { %>
+        <div class="alert alert-<%= result %> text-center" role="alert" id='alert'>
+            <%= errorMessage %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+        <div class="container text-uppercase">
+            <form action="/reset" method="POST" novalidate>
+                <div class="row">
+                    <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                        <label for="email">Email Address*</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Your Email"
+                            value="<%= oldInput.email %>">
+                    </div>
+                    <div class="col col-lg-4 col-md-12 col-sm-12 mt-3">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <button type="submit" class="btn btn-dark btn-md">Send Confirmation Email</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function hideAlert() {
+            const alert = document.getElementById('alert');
+            alert.classList.add("hidden");
+        };
+        const alert = document.getElementById('alert');
+        if (alert.classList[0] === 'alert') {
+            setTimeout("hideAlert()", 3000);
+        }
+    </script>
+
+    <%- include('../includes/end.ejs') %>

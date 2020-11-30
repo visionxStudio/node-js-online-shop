@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-uppercase">
+    <a class="navbar-brand" href="/">Techsansaar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ml-4" id="navbarNavAltMarkup">
+        <div class="navbar-nav text-center">
+            <a class="nav-item nav-link ml-2 <%= path === '/' ? 'active text-white ' : '' %>" href="/">Home</a>
+            <a class="nav-item nav-link ml-2 <%= path === '/products' ? 'active text-white ' : '' %>"
+                href="#">Products</a>
+            <% if (isAuthenticated) { %>
+            <a class="nav-item nav-link ml-2 <%= path === '/admin/add-product' ? 'active text-white ' : '' %>" href="/admin/add-product">Add
+                Product</a>
+            <a class="nav-item nav-link ml-2 <%= path === '/admin/admin-panel' ? 'active text-white ' : '' %>" href="/admin/admin-panel">Admin Panel</a>
+            <% } %>
+        </div>
+        <div class="navbar-nav text-center ml-auto">
+            <% if (!isAuthenticated) { %>
+            <div class="cart-info mr-3">
+                <a class="nav-item nav-link  <%= path === '/cart' ? 'active text-white ' : '' %>" href="#">
+                    <i class="fas fa-cart-plus icon" style="font-size:24px"></i></a>
+                <span class="badge badge-warning" id='lblCartCount'>1</span>
+            </div>
+            <div class="notification-info mr-3">
+                <a class="nav-item nav-link  <%= path === '/cart' ? 'active text-white ' : '' %>" href="#">
+                    <i class="fas fa-bell icon" style="font-size:24px"></i></a>
+                <span class="badge badge-warning" id='notificationCount'>1</span>
+            </div>
+            <a class="nav-item nav-link mr-2 <%= path === '/login' ? 'active text-white ' : '' %>"
+                href="/login">Login</a>
+            <a class="nav-item nav-link mr-2 <%= path === '/signup' ? 'active text-white ' : '' %>"
+                href="/signup">Signup</a>
+            <% } else { %>
+            <form action="/logout" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <a class="nav-item nav-link mr-2" href="/logout">Logout</a>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</nav>

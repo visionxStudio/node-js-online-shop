@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="container-middle mt-5">
+        <% if (errorMessage) { %>
+        <div class="alert alert-<%= result %> text-center" role="alert" id="alert">
+            <%= errorMessage %>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } %>
+    </div>
+
+    <!-- <div class="container text-uppercase login">
+        <form action="/login" method="POST" novalidate>
+            <div class="row">
+                <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <label for="email">Email Address*</label>
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Your Email"
+                        value="<%= oldInput.email %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-12 col-md-12 col-sm-12 mt-3">
+                    <label for="password">Password*</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                        value="<%= oldInput.password %>">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-4 col-md-12 col-sm-12 mt-3">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                    <button type="submit" class="btn btn-dark btn-md">Login</button>
+                    <div class="text-center reset mt-3">
+                        <a href="/reset">Forgot Password</a>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div> -->
+    <div class="container text-capitalize  col col-lg-6 col-md-12 col-sm-12">
+        <form action="/login" method="POST" novalidate>
+            <div class="form-group ">
+                <label for="email">Email Address*</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="Your Email"
+                    value="<%= oldInput.email %>">
+            </div>
+            <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    value="<%= oldInput.password %>">
+            </div>
+            <div class="form-check">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button type="submit" class="btn btn-dark btn-md">Login</button>
+                <div class="text-center reset mt-3">
+                    <a href="/reset">Forgot Password</a>
+                </div>
+        </form>
+    </div>
+
+
+    <script>
+        function hideAlert() {
+            const alert = document.getElementById('alert');
+            alert.classList.add("hidden");
+        };
+        try {
+            const alert = document.getElementById('alert');
+            if (alert.classList[0] === null) {} else {
+                setTimeout("hideAlert()", 3000);
+            }
+        } catch (err) {
+            alert == null
+        }
+    </script>
+
+    <%- include('../includes/end.ejs') %>

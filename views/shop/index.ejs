@@ -1,0 +1,37 @@
+<%- include('../includes/head.ejs') %>
+
+<head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+
+    <div class="container">
+        <% if(prods.length > 0) { %>
+        <h2 class="text-capitalize mt-3 mb-3">Latest Products</h2>
+        <div class="row">
+            <% for (let product of prods) { %>
+            <div class="col-12 col-sm-8 col-md-6 col-lg-3 mb-3 text-center card-transition">
+                <div class="card">
+                    <img class="card-img card-img-size" src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+                    <div class="card-body">
+                        <h4 class="card-title"><%= product.title %></h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Brand: <%= product.brand %></h6>
+                        <div class="buy align-items-center">
+                            <div class="price text-black">
+                                <h5 class="mt-4">Price: <%= product.price %></h5>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-danger mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% } else { %>
+        <h1 class="text-center text-warning">No Products Found!</h1>
+    <% } %>
+
+    <%- include('../includes/end.ejs') %>
